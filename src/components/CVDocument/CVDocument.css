@@ -1,0 +1,4 @@
+#cv-document {
+    flex: 50%;
+    overflow-y: scroll;
+}
