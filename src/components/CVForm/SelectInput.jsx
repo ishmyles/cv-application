@@ -5,7 +5,7 @@ export default function SelectInput({id, label, onChangeFunc, inputValue}) {
     }
     return (
         <div className="input-group">
-            <label htmlFor={id}>{label} year:</label>
+            <label htmlFor={id}>{label} Year</label>
             <select name={id} id={id} value={inputValue} onChange={handleInputChange}>
                 <option value="Jan">Jan</option>
                 <option value="Feb">Feb</option>

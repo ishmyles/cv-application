@@ -12,7 +12,19 @@ import EducationItem from "./EducationItem"
 import ExperienceItem from "./ExperienceItem"
 
 const createNewEducationItem = () => ({id: cryptoRandomString({length: 5}), schoolName: "", degreeName: "", studyYearFrom: "", studyYearTo: ""});
-const createNewExperienceItem = () => ({id: cryptoRandomString({length: 5}), companyName: "", position: "", startingMonth: "Jan", endingMonth: "Jan", workYearFrom: "", workYearTo: ""});
+
+const createNewExperienceItem = () => ({
+    id: cryptoRandomString({length: 5}), 
+    companyName: "", 
+    position: "", 
+    startingMonth: "Jan", 
+    endingMonth: "Jan", 
+    workYearFrom: "", workYearTo: "", 
+    responsibilities: []
+});
+
+const createNewResponsibility = () => ({id: cryptoRandomString({length: 5}), value: ""})
+
 //, experienceInfo
 export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, onEducationSubmit, experienceInfo, onExperienceSubmit }) {
     // Personal Info
@@ -57,12 +69,38 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
         setExperienceInput(prevState => [...prevState, createNewExperienceItem()])
     };
 
+    const addResponsibilityItem = (key) => {
+        setExperienceInput(prevState => prevState.map(exp => {
+            if (exp.id === key) {
+                return {...exp, responsibilities: [...exp.responsibilities, createNewResponsibility()]}
+            } else {
+                return exp;
+            }
+        }));
+    }
+
     const updateExperienceInput = (key, inputName, inputValue) => {
         setExperienceInput(prevState => (prevState.map(item => {
             return (item.id === key) ? {...item, [inputName]: inputValue} : item;
         }))
         );
     }; 
+
+    const updateResponsibilityInput = (key, responsibilityId, inputValue) => {
+        setExperienceInput(prevState => prevState.map(exp => {
+            if (exp.id === key) {
+                const updatedExp = {...exp};
+                
+                updatedExp.responsibilities = updatedExp.responsibilities.map(r => {
+                    return (r.id === responsibilityId) ? {id: r.id, value: inputValue} : r;
+                })
+
+                return updatedExp;
+            } else {
+                return exp;
+            }
+        }));
+    }
 
     const handleExperienceSubmit = () => {
         onExperienceSubmit(experienceInput);
@@ -105,7 +143,12 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                         <FormInput id="workYearFrom" inputName="Start Year" inputType="number" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.workYearFrom} /> 
                         <SelectInput id="endingMonth" label="Ending" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.endingMonth} />
                         <FormInput id="workYearTo" inputName="End Year" inputType="number" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.workYearTo} />
-                        {/*item.responsibilities.map(subitem => <FormInput key={subitem.id} id="workYearTo" inputName="Add responsibility" inputType="text" onChangeFunc={(inputName, inputValue) => updateEducationInput(item.id, inputName, inputValue)} inputValue={subitem.value} />)*/}
+                        <div className="sub-card">
+                            {item.responsibilities.map(responsibility => 
+                                <FormInput key={responsibility.id} id={"responsibility-" + responsibility.id} inputName="Responsibility" inputType="text" onChangeFunc={(inputName, inputValue) => updateResponsibilityInput(item.id, responsibility.id, inputValue)} inputValue={responsibility.value} />
+                            )}
+                        </div>
+                        <AddItemBtn onClickFunc={() => addResponsibilityItem(item.id)} />
                     </ExperienceItem> 
                 ))}
                 <AddItemBtn onClickFunc={addExperienceItem} />
