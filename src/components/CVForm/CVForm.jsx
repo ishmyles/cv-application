@@ -6,6 +6,7 @@ import "./CVForm.css"
 import FormSection from "./FormSection"
 import SelectInput from "./SelectInput"
 import FormInput from "./FormInput"
+import TextareaInput from "./TextareaInput"
 import AddItemBtn from "./AddItemBtn"
 import SaveBtn from "./SaveBtn"
 import EducationItem from "./EducationItem"
@@ -17,15 +18,16 @@ const createNewExperienceItem = () => ({
     id: cryptoRandomString({length: 5}), 
     companyName: "", 
     position: "", 
-    startingMonth: "Jan", 
-    endingMonth: "Jan", 
-    workYearFrom: "", workYearTo: "", 
+    isCurrent: false,
+    startingMonth: "", 
+    endingMonth: "", 
+    workYearFrom: "", 
+    workYearTo: "", 
     responsibilities: []
 });
 
 const createNewResponsibility = () => ({id: cryptoRandomString({length: 5}), value: ""})
 
-//, experienceInfo
 export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, onEducationSubmit, experienceInfo, onExperienceSubmit }) {
     // Personal Info
     const [personalInput, setPersonalInput] = useState(personalInfo);
@@ -90,7 +92,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
         setExperienceInput(prevState => prevState.map(exp => {
             if (exp.id === key) {
                 const updatedExp = {...exp};
-                
+
                 updatedExp.responsibilities = updatedExp.responsibilities.map(r => {
                     return (r.id === responsibilityId) ? {id: r.id, value: inputValue} : r;
                 })
@@ -139,13 +141,14 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                     <ExperienceItem key={item.id}>
                         <FormInput id="companyName" inputName="Company Name" inputType="text" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.companyName} /> 
                         <FormInput id="position" inputName="Position" inputType="text" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.position} /> 
-                        <SelectInput id="startingMonth" label="Starting" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.startingMonth} />
+                        <SelectInput id="startingMonth" label="Start" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.startingMonth} />
                         <FormInput id="workYearFrom" inputName="Start Year" inputType="number" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.workYearFrom} /> 
-                        <SelectInput id="endingMonth" label="Ending" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.endingMonth} />
-                        <FormInput id="workYearTo" inputName="End Year" inputType="number" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.workYearTo} />
+                        <FormInput id="isCurrent" inputName="Current" inputType="checkbox" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.isCurrent} />
+                        <SelectInput id="endingMonth" label="End" isCurrent={item.isCurrent} onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.endingMonth} />
+                        <FormInput id="workYearTo" inputName="End Year" isCurrent={item.isCurrent} inputType="number" onChangeFunc={(inputName, inputValue) => updateExperienceInput(item.id, inputName, inputValue)} inputValue={item.workYearTo} />
                         <div className="sub-card">
                             {item.responsibilities.map(responsibility => 
-                                <FormInput key={responsibility.id} id={"responsibility-" + responsibility.id} inputName="Responsibility" inputType="text" onChangeFunc={(inputName, inputValue) => updateResponsibilityInput(item.id, responsibility.id, inputValue)} inputValue={responsibility.value} />
+                                <TextareaInput key={responsibility.id} id={"item-" + responsibility.id} onChangeFunc={(inputValue) => updateResponsibilityInput(item.id, responsibility.id, inputValue)} inputValue={responsibility.value}  />
                             )}
                         </div>
                         <AddItemBtn onClickFunc={() => addResponsibilityItem(item.id)} />

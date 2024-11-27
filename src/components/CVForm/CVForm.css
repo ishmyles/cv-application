@@ -1,4 +1,5 @@
 #cv-form {
     background-color: #fff;
     flex: 50%;
+    overflow-y: scroll;
 }

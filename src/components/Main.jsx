@@ -16,7 +16,7 @@ export default function Main() {
 
     const [experienceInfo, setExperienceInfo] = useState([]);
     const updateExperienceInfo = (newData) => setExperienceInfo(newData);
-   //experienceInfo={experienceInfo}
+
     return (
         <main id="cv-formatter">
             <CVForm personalInfo={personalInfo} onPersonalSubmit={updatePersonalInfo} educationInfo={educationInfo} onEducationSubmit={updateEducationInfo} experienceInfo={experienceInfo} onExperienceSubmit={updateExperienceInfo} />

@@ -1,12 +1,13 @@
-export default function SelectInput({id, label, onChangeFunc, inputValue}) {
+export default function SelectInput({id, label, onChangeFunc, isCurrent, inputValue}) {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         onChangeFunc(name, value)
     }
     return (
         <div className="input-group">
-            <label htmlFor={id}>{label} Year</label>
-            <select name={id} id={id} value={inputValue} onChange={handleInputChange}>
+            <label htmlFor={id}>{label} Month</label>
+            <select name={id} id={id} value={inputValue} onChange={handleInputChange} disabled={isCurrent && id === "endingMonth"}>
+                <option value=""></option>
                 <option value="Jan">Jan</option>
                 <option value="Feb">Feb</option>
                 <option value="Mar">Mar</option>
