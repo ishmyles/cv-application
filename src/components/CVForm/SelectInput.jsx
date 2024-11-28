@@ -1,3 +1,5 @@
+import "./SelectInput.css"
+
 export default function SelectInput({id, label, onChangeFunc, isCurrent, inputValue}) {
     const handleInputChange = (event) => {
         const { name, value } = event.target;

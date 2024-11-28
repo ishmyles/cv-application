@@ -1,5 +1,13 @@
 #cv-form {
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     flex: 50%;
+
+    background-color: #fff;
+    color: #2d3142;
+    padding: 40px 0;
+
     overflow-y: scroll;
 }

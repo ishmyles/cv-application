@@ -8,7 +8,7 @@ import CVDocument from './CVDocument/CVDocument'
 
 
 export default function Main() {
-    const [personalInfo, setPersonalInfo] = useState({firstName: "", lastName: "", email: "", phoneNo: "", linkedin: ""});
+    const [personalInfo, setPersonalInfo] = useState({firstName: "", lastName: "", profession: "", phoneNo: "", email: "", linkedin: ""});
     const updatePersonalInfo = (newData) => setPersonalInfo(newData);
 
     const [educationInfo, setEducationInfo] = useState([]);

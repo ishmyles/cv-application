@@ -1,3 +1,5 @@
+import "./TextareaInput.css"
+
 export default function TextareaInput({ id, inputValue, onChangeFunc }) {
     const handleInputChange = (event) => {
         const { value } = event.target;

@@ -1,3 +1,5 @@
+import "./FormSection.css"
+
 export default function FormSection({ children, sectionName }) {
     return (
         <div className="form-section">

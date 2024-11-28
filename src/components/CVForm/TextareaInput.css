@@ -1,0 +1,8 @@
+.sub-card > div > textarea {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* .sub-card > div:last-of-type > textarea{
+    margin-bottom: 0px;
+} */
