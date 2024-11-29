@@ -42,7 +42,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handlePersonalSubmit = () => {
         onPersonalSubmit(personalInput);
-        setPersonalInput({firstName: "", lastName: "", profession: "", phoneNo: "", email: "", linkedin: ""})
+        // setPersonalInput({firstName: "", lastName: "", profession: "", phoneNo: "", email: "", linkedin: ""})
     };
 
     // Education Info
@@ -61,7 +61,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handleEducationSubmit = () => {
         onEducationSubmit(educationInput);
-        setEducationInput([]);
+        // setEducationInput([]);
     };
 
     // Experience Info
@@ -106,7 +106,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handleExperienceSubmit = () => {
         onExperienceSubmit(experienceInput);
-        setExperienceInput([]);
+        // setExperienceInput([]);
     };
 
     return (
@@ -130,6 +130,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
             </FormSection> */}
             <FormSection sectionName="Education">
+                <AddItemBtn onClickFunc={addEducationItem} />
                 {educationInput.map(item => (
                     <EducationItem key={item.id}>
                         <div className="form-group">
@@ -142,10 +143,10 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                         </div>
                     </EducationItem> 
                 ))}
-                <AddItemBtn onClickFunc={addEducationItem} />
                 <SaveBtn submitFunc={handleEducationSubmit}/>
             </FormSection>
             <FormSection sectionName="Experience">
+                <AddItemBtn onClickFunc={addExperienceItem} />
                 {experienceInput.map(item => (
                     <ExperienceItem key={item.id}>
                         
@@ -169,7 +170,6 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                         </fieldset>
                     </ExperienceItem> 
                 ))}
-                <AddItemBtn onClickFunc={addExperienceItem} />
                 <SaveBtn submitFunc={handleExperienceSubmit}/>
             </FormSection>
         </form>

@@ -3,7 +3,12 @@
 }
 
 .form-group label {
+    display: block;
     margin-bottom: 5px;
+}
+
+.form-section:first-of-type .form-group:last-of-type {
+    margin-bottom: 20px;
 }
 
 .input-group input[type="checkbox"] {

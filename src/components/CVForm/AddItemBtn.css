@@ -1,0 +1,30 @@
+.form-section > .btn-add {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: #fff;
+    color: #2d3142;
+    border: 2px solid #2d3142;
+
+    padding: 3px 10px;
+    margin: 23px 20px;
+}
+
+.form-section > .btn-add:hover {
+    background-color: #2d3142;
+    color: #fff;
+    border: 2px solid #2d3142;
+}
+
+.sub-card button{
+    padding: 5px 10px;
+    background-color: #2d3142;
+    color: #fff;
+}
+
+.sub-card button:hover {
+    background-color: #fff;
+    color: #2d3142;
+    border: 1px solid #2d3142;
+}
