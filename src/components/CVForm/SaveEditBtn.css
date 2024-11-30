@@ -1,0 +1,21 @@
+.btn-save {
+    background-color: #ef8354;
+    color: #fff;
+}
+
+.btn-save:hover {
+    background-color: #fff;
+    color: #ef8354;
+    border: 1px solid #ef8354;
+}
+
+.btn-edit {
+    background-color: #4f5d75;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #fff;
+    color: #4f5d75;
+    border: 1px solid #4f5d75;
+}

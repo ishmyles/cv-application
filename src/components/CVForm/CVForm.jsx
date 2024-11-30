@@ -8,7 +8,7 @@ import SelectInput from "./SelectInput"
 import FormInput from "./FormInput"
 import TextareaInput from "./TextareaInput"
 import AddItemBtn from "./AddItemBtn"
-import SaveBtn from "./SaveBtn"
+import SaveEditBtn from "./SaveEditBtn"
 import EducationItem from "./EducationItem"
 import ExperienceItem from "./ExperienceItem"
 
@@ -42,8 +42,10 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handlePersonalSubmit = () => {
         onPersonalSubmit(personalInput);
-        // setPersonalInput({firstName: "", lastName: "", profession: "", phoneNo: "", email: "", linkedin: ""})
+        setPersonalInput({firstName: "", lastName: "", profession: "", phoneNo: "", email: "", linkedin: ""})
     };
+
+    const editPersonalForm = () => setPersonalInput(personalInfo);
 
     // Education Info
     const [educationInput, setEducationInput] = useState(educationInfo);
@@ -61,8 +63,10 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handleEducationSubmit = () => {
         onEducationSubmit(educationInput);
-        // setEducationInput([]);
+        setEducationInput([]);
     };
+
+    const editEducationForm = () => setEducationInput(educationInfo);
 
     // Experience Info
     const [experienceInput, setExperienceInput] = useState(experienceInfo);
@@ -106,8 +110,10 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
 
     const handleExperienceSubmit = () => {
         onExperienceSubmit(experienceInput);
-        // setExperienceInput([]);
+        setExperienceInput([]);
     };
+
+    const editExperienceForm = () => setExperienceInput(experienceInfo);
 
     return (
         <form id="cv-form">
@@ -124,7 +130,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                     <FormInput id="email" inputName="Email" inputType="text"  onChangeFunc={updatePersonalInput} inputValue={personalInput.email} />
                     <FormInput id="linkedin" inputName="LinkedIn" inputType="text" onChangeFunc={updatePersonalInput} inputValue={personalInput.linkedin} />
                 </div>
-                <SaveBtn submitFunc={handlePersonalSubmit}/>
+                <SaveEditBtn submitFunc={handlePersonalSubmit} editFunc={editPersonalForm} />
             </FormSection>
             {/* <FormSection sectionName="General">
 
@@ -143,7 +149,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                         </div>
                     </EducationItem> 
                 ))}
-                <SaveBtn submitFunc={handleEducationSubmit}/>
+                <SaveEditBtn submitFunc={handleEducationSubmit} editFunc={editEducationForm} />
             </FormSection>
             <FormSection sectionName="Experience">
                 <AddItemBtn onClickFunc={addExperienceItem} />
@@ -170,7 +176,7 @@ export default function CVForm({ personalInfo, onPersonalSubmit, educationInfo, 
                         </fieldset>
                     </ExperienceItem> 
                 ))}
-                <SaveBtn submitFunc={handleExperienceSubmit}/>
+                <SaveEditBtn submitFunc={handleExperienceSubmit} editFunc={editExperienceForm} />
             </FormSection>
         </form>
     )
