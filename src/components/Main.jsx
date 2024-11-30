@@ -20,7 +20,7 @@ export default function Main() {
     return (
         <main id="cv-formatter">
             <CVForm personalInfo={personalInfo} onPersonalSubmit={updatePersonalInfo} educationInfo={educationInfo} onEducationSubmit={updateEducationInfo} experienceInfo={experienceInfo} onExperienceSubmit={updateExperienceInfo} />
-            <CVDocument />
+            <CVDocument personalInfo={personalInfo} educationInfo={educationInfo} experienceInfo={experienceInfo} />
         </main>
     )
 }
