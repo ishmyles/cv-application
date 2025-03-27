@@ -2,6 +2,8 @@
 
 This repository contains an application that formats CV information into a layout that is more recruiter-friendly.
 
+- [Visit the preview](https://ish-cv-generator.netlify.app/)
+
 ## Technologies Used
 
 - Vite
